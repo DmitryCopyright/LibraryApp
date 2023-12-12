@@ -1,0 +1,43 @@
+<mat-card>
+  <mat-card-title>Penalties</mat-card-title>
+  <mat-card-content>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="penalty_id">
+        <mat-header-cell *matHeaderCellDef> Penalty ID </mat-header-cell>
+        <mat-cell *matCellDef="let penalty"> {{ penalty.penalty_id }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="reader_id">
+        <mat-header-cell *matHeaderCellDef> Reader ID </mat-header-cell>
+        <mat-cell *matCellDef="let penalty"> {{ penalty.reader_id }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="book_id">
+        <mat-header-cell *matHeaderCellDef> Book ID </mat-header-cell>
+        <mat-cell *matCellDef="let penalty"> {{ penalty.book_id }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="issue_date">
+        <mat-header-cell *matHeaderCellDef> Issue Date </mat-header-cell>
+        <mat-cell *matCellDef="let penalty"> {{ penalty.issue_date | date }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="debt_amount">
+        <mat-header-cell *matHeaderCellDef> Debt Amount </mat-header-cell>
+        <mat-cell *matCellDef="let penalty"> {{ penalty.debt_amount }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let penalty">
+          <button mat-button (click)="updatePenalty(penalty)">Update</button>
+          <button mat-button color="warn" (click)="deletePenalty(penalty.penalty_id)">Delete</button>
+          <button mat-button color="warn" (click)="addPenalty(penalty.penalty_id)">Add</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>
